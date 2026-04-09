@@ -366,6 +366,7 @@ function closePopup() {
   height: 100%;
   object-fit: contain;
   margin: 0 auto;
+  border-radius: 14px;
 }
 
 .popup-reward-name,
