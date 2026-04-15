@@ -1041,12 +1041,6 @@ onBeforeUnmount(() => {
                     cskh@concung.com
                   </a>
                 </li>
-                <li>
-                  <span class="font-medium">
-                    Điện thoại:
-                  </span>
-                  028 7300 6609
-                </li>
                 <li style="width:335px">
                   <span class="font-medium">
                     ĐKKD:
