@@ -76,8 +76,8 @@ function closeRewardPopup() {
 const topSlides = [
   '/img/slide01.png',
   '/img/slide02.png',
+  '/img/slide04.png',
   '/img/slide03.png',
-  '/img/qttafree.png',
   '/img/qttamp100.png',
 ]
 
