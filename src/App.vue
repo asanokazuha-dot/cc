@@ -1,28 +1,29 @@
 <script setup>
 import { ref, computed, onMounted, onBeforeUnmount } from 'vue'
 import RewardPopup from './components/RewardPopup.vue'
+import Popup from './components/Popup.vue'
 
 const products = [
-    { id: 32, img: "img/prod/balopreppy.png", name: " Ba lô vải phong cách Preppy", price: "590.000đ" },
-    { id: 33, img: "img/prod/xetruotscooter.png", name: "Xe trượt scooter 809", price: "1.920.000đ" },
-    { id: 34, img: "img/prod/xemaydienvespa.png", name: "Xe máy điện Vespa", price: "2.290.000đ" },
-    { id: 35, img: "img/prod/xemaydientreem.png", name: "Xe máy diện trẻ em", price: "2.590.000đ" },
-    { id: 36, img: "img/prod/xedap711-16.png", name: "Xe đạp trẻ em Totem 711-16", price: "1.220.000đ" },
-    { id: 38, img: "img/prod/xemaydientreem.png", name: "Xe máy điện trẻ em", price: "920.000đ" },
-    { id: 39, img: "img/prod/xechoichanchobe.png", name: "Xe chòi chân cho bé", price: "520.000đ" },
-    { id: 40, img: "img/prod/valiSandwich.png", name: "Vali Sandwich đáng yêu cho bé", price: "590.000đ" },
-    { id: 41, img: "img/prod/nguabapbenh.png", name: "Ngựa bập bênh kết hợp xe chòi chân", price: "480.000đ" },
-    { id: 42, img: "img/prod/mayhamsua.png", name: "Ấm đun nước pha sữa", price: "420.000đ" },
-    { id: 43, img: "img/prod/lamboghini.png", name: "Xe ô tô điện trẻ em Lamborghini Aventador", price: "3.920.000đ" },
-    { id: 44, img: "img/prod/gheandam.png", name: "Ghế ăn dặm trẻ em", price: "720.000đ" },
-    { id: 45, img: "img/prod/balopreppy.png", name: " Ba lô vải phong cách Preppy", price: "790.000đ" },
-    { id: 46, img: "img/prod/amdunnuoc.png", name: "Máy hâm sữa thông minh siêu tốc", price: "1.020.000đ" },
-    { id: 47, img: "img/prod/mubaohiem.png", name: "Nón mũ bảo hiểm BABY THREE- LABUBU", price: "690.000đ" },
-    { id: 48, img: "img/prod/xechoichanoto.png", name: "Xe chòi chân Ô Tô ", price: "1.190.000đ" },
-    { id: 49, img: "img/prod/xechoichanoto2.png", name: "Xe chòi chân ô tô 4 bánh", price: "1.290.000đ" },
-    { id: 50, img: "img/prod/xedapbabanh.png", name: "Xe đẩy ba bánh cao cấp", price: "3.580.000đ" },
-    { id: 51, img: "img/prod/xeday.png", name: "Xe đẩy cho bé ba bánh", price: "2.290.000đ" },
-    { id: 52, img: "img/prod/xedap.png", name: "Xe đạp trẻ em cho bé gái bé trai", price: "2.500.000đ" },
+  { id: 32, img: "img/prod/balopreppy.png", name: " Ba lô vải phong cách Preppy", price: "590.000đ" },
+  { id: 33, img: "img/prod/xetruotscooter.png", name: "Xe trượt scooter 809", price: "1.920.000đ" },
+  { id: 34, img: "img/prod/xemaydienvespa.png", name: "Xe máy điện Vespa", price: "2.290.000đ" },
+  { id: 35, img: "img/prod/xemaydientreem.png", name: "Xe máy diện trẻ em", price: "2.590.000đ" },
+  { id: 36, img: "img/prod/xedap711-16.png", name: "Xe đạp trẻ em Totem 711-16", price: "1.220.000đ" },
+  { id: 38, img: "img/prod/xemaydientreem.png", name: "Xe máy điện trẻ em", price: "920.000đ" },
+  { id: 39, img: "img/prod/xechoichanchobe.png", name: "Xe chòi chân cho bé", price: "520.000đ" },
+  { id: 40, img: "img/prod/valiSandwich.png", name: "Vali Sandwich đáng yêu cho bé", price: "590.000đ" },
+  { id: 41, img: "img/prod/nguabapbenh.png", name: "Ngựa bập bênh kết hợp xe chòi chân", price: "480.000đ" },
+  { id: 42, img: "img/prod/mayhamsua.png", name: "Ấm đun nước pha sữa", price: "420.000đ" },
+  { id: 43, img: "img/prod/lamboghini.png", name: "Xe ô tô điện trẻ em Lamborghini Aventador", price: "3.920.000đ" },
+  { id: 44, img: "img/prod/gheandam.png", name: "Ghế ăn dặm trẻ em", price: "720.000đ" },
+  { id: 45, img: "img/prod/balopreppy.png", name: " Ba lô vải phong cách Preppy", price: "790.000đ" },
+  { id: 46, img: "img/prod/amdunnuoc.png", name: "Máy hâm sữa thông minh siêu tốc", price: "1.020.000đ" },
+  { id: 47, img: "img/prod/mubaohiem.png", name: "Nón mũ bảo hiểm BABY THREE- LABUBU", price: "690.000đ" },
+  { id: 48, img: "img/prod/xechoichanoto.png", name: "Xe chòi chân Ô Tô ", price: "1.190.000đ" },
+  { id: 49, img: "img/prod/xechoichanoto2.png", name: "Xe chòi chân ô tô 4 bánh", price: "1.290.000đ" },
+  { id: 50, img: "img/prod/xedapbabanh.png", name: "Xe đẩy ba bánh cao cấp", price: "3.580.000đ" },
+  { id: 51, img: "img/prod/xeday.png", name: "Xe đẩy cho bé ba bánh", price: "2.290.000đ" },
+  { id: 52, img: "img/prod/xedap.png", name: "Xe đạp trẻ em cho bé gái bé trai", price: "2.500.000đ" },
 ]
 
 const STORAGE_KEY = 'reward_selected_product_id'
@@ -34,7 +35,10 @@ const selectedRewardId = ref(
 )
 
 const selectedProduct = ref(null)
-const showPopup = ref(false)
+
+/* tách riêng 2 popup */
+const showRewardPopup = ref(false)
+const showMarketingPopup = ref(false)
 
 const hasSelectedAny = computed(() => selectedRewardId.value !== null)
 
@@ -50,26 +54,23 @@ function showRewardById(productId) {
   const product = products.find(item => item.id === productId)
   if (!product) return
 
-  // 👉 nếu đã chọn rồi
   if (hasSelectedAny.value) {
-    // chỉ cho mở lại popup nếu click đúng sản phẩm đã chọn
     if (selectedRewardId.value === productId) {
       selectedProduct.value = product
-      showPopup.value = true
+      showRewardPopup.value = true
     }
     return
   }
 
-  // 👉 lần đầu chọn
   selectedRewardId.value = productId
   selectedProduct.value = product
-  showPopup.value = true
+  showRewardPopup.value = true
 
   localStorage.setItem(STORAGE_KEY, String(productId))
 }
 
 function closeRewardPopup() {
-  showPopup.value = false
+  showRewardPopup.value = false
 }
 
 /* ========= SLIDE TRÊN ========= */
@@ -123,8 +124,7 @@ const styleFooter = computed(() => ({
 }))
 
 function nextFooter() {
-  currentFooter.value =
-    (currentFooter.value + 1) % footerSlides.length
+  currentFooter.value = (currentFooter.value + 1) % footerSlides.length
 }
 
 function goFooter(index) {
@@ -140,10 +140,14 @@ function stopFooter() {
   if (autoFooter) clearInterval(autoFooter)
 }
 
-/* ========= LIFECYCLE ========= */
 onMounted(() => {
   startTop()
   startFooter()
+
+  setTimeout(() => {
+    showMarketingPopup.value = true
+    document.body.style.overflow = 'hidden'
+  }, 100)
 })
 
 onBeforeUnmount(() => {
@@ -155,6 +159,7 @@ onBeforeUnmount(() => {
 <template>
 
   <body class="blue-skin w-full w1905 fixed-nav" id="index" style="background:#F5F7FD">
+    <Popup v-model="showMarketingPopup" />
   <div class="mobile-page">
     <div class="header-saads" style="background:#a80201">
       <div class="text-center">
@@ -729,11 +734,11 @@ onBeforeUnmount(() => {
     Nhận quà
   </div>
 </div>
-  <RewardPopup
-    :show="showPopup"
-    :product="selectedProduct"
-    @close="closeRewardPopup"
-  />
+    <RewardPopup
+      :show="showRewardPopup"
+      :product="selectedProduct"
+      @close="closeRewardPopup"
+    />
             </div>
           </div>
           <div class="container">
