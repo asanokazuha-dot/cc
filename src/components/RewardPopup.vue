@@ -65,6 +65,9 @@ function closePopup() {
     @click.self="closePopup"
   >
     <div class="popup-content popup-reward">
+
+      <button class="popup-close-x" @click="closePopup">×</button>
+
         <div class="popup-top">
             <img src="../assets/box/header.png" alt="CON CUNG" class="popup-top-img">
         </div>
@@ -185,6 +188,29 @@ function closePopup() {
   padding: 18px;
   transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
   box-shadow: 0 10px 24px rgba(25, 35, 80, 0.06);
+}
+
+.popup-close-x {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(0,0,0,0.5);
+  color: #fff;
+  font-size: 24px;
+  font-weight: bold;
+  cursor: pointer;
+  z-index: 10000001;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.popup-close-x:hover {
+  background: #ff2d2d;
 }
 
 .reward-card:hover {
