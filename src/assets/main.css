@@ -7651,7 +7651,7 @@ img {
 }
 
 /* ========== TABLET ========== */
-@media (max-width: 991px) {
+@media (max-width: 1277px) {
     .content-main-index {
         flex-direction: column;
     }
@@ -7720,7 +7720,7 @@ img {
 }
 
 /* ========== MOBILE ========== */
-@media (max-width: 767px) {
+@media (max-width: 991px) {
 
     body,
     #app,

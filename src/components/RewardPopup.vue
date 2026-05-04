@@ -1,4 +1,6 @@
 <script setup>
+import { watch, onUnmounted } from "vue"
+
 const props = defineProps({
   show: {
     type: Boolean,
@@ -10,10 +12,48 @@ const props = defineProps({
   },
 })
 
-const emit = defineEmits(['close'])
+const emit = defineEmits(["close"])
+
+let scrollY = 0
+
+function lockScroll() {
+  scrollY = window.scrollY
+
+  document.body.style.position = "fixed"
+  document.body.style.top = `-${scrollY}px`
+  document.body.style.left = "0"
+  document.body.style.right = "0"
+  document.body.style.width = "100%"
+}
+
+function unlockScroll() {
+  document.body.style.position = ""
+  document.body.style.top = ""
+  document.body.style.left = ""
+  document.body.style.right = ""
+  document.body.style.width = ""
+
+  window.scrollTo(0, scrollY)
+}
+
+watch(
+  () => props.show,
+  (value) => {
+    if (value) {
+      lockScroll()
+    } else {
+      unlockScroll()
+    }
+  },
+  { immediate: true }
+)
+
+onUnmounted(() => {
+  unlockScroll()
+})
 
 function closePopup() {
-  emit('close')
+  emit("close")
 }
 </script>
 
@@ -253,19 +293,45 @@ function closePopup() {
 .popup {
   position: fixed;
   inset: 0;
-  z-index: 999999;
-  display: none;
+  z-index: 9999999;
+  display: flex;
   align-items: center;
   justify-content: center;
   padding: 18px;
   background: rgba(38, 18, 47, 0.55);
   backdrop-filter: blur(6px);
+  overflow: hidden;
+  touch-action: none;
 }
 
 .popup.show {
   display: flex;
 }
-
+.reward-overlay {
+  position: fixed !important;
+  inset: 0 !important;
+  z-index: 9999999 !important;
+  background: rgba(0,0,0,.65);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+.popup-overlay {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  touch-action: none; /* chặn swipe */
+}
+.reward-popup {
+  position: relative;
+  z-index: 10000000;
+  width: min(94vw, 430px);
+  max-height: 90dvh;
+  overflow-y: auto;
+  background: #fff;
+  border-radius: 20px;
+}
 /* ===== Popup box ===== */
 .popup-reward {
   width: min(400px, 100%);

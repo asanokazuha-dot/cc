@@ -156,7 +156,7 @@ onBeforeUnmount(() => {
 
 <template>
 
-  <body class="blue-skin w-full w1905 fixed-nav" id="index" style="background:#F5F7FD">
+  <teleport to="body">
     <Popup v-model="showMarketingPopup" />
   <div class="mobile-page">
     <div class="header-saads" style="background:#a80201">
@@ -1268,5 +1268,5 @@ onBeforeUnmount(() => {
       </iframe>
     </div>
     </div>
-  </body>
+  </teleport>
 </template>
