@@ -294,14 +294,12 @@ function closePopup() {
   position: fixed;
   inset: 0;
   z-index: 9999999;
-  display: flex;
+  display: none;
   align-items: center;
   justify-content: center;
   padding: 18px;
   background: rgba(38, 18, 47, 0.55);
   backdrop-filter: blur(6px);
-  overflow: hidden;
-  touch-action: none;
 }
 
 .popup.show {
