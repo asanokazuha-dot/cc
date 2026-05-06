@@ -24,6 +24,7 @@
 .slick-list:focus {
     outline: 0
 }
+
 .slick-slider .slick-list,
 .slick-slider .slick-track {
     -webkit-transform: translate3d(0, 0, 0);
@@ -2413,9 +2414,11 @@ fieldset:disabled a.btn {
     border-color: transparent;
     border-radius: 1rem
 }
+
 .coupon-section {
     display: none;
 }
+
 .custom-range::-ms-thumb {
     width: 1rem;
     height: 1rem;
@@ -7726,26 +7729,20 @@ img {
     #app,
     .mobile-page {
         min-height: 100vh;
-        background: linear-gradient(180deg, #E1253E 0%, #ff0a0d 23%, #ff8fbd 38%, #ffd3e6 68%, #fff3f8 100%);
+        background: linear-gradient(180deg, #E1253E 0%, #ff0a0d 23%, #ff4345 38%, #ffd3e6 68%, #fff3f8 100%);
         background-attachment: fixed;
     }
 
     /* nếu phần chính của bạn đang nằm trong app.vue */
     #index {
-        background: transparent !important;
-        min-height: 100vh;
         position: relative;
         overflow-x: hidden;
     }
 
+
     /* thêm lớp phủ mờ để nền nhìn mềm hơn */
     #index::before {
-        content: "";
-        position: fixed;
-        inset: 0;
-        background: url('/img/background.png');
-        pointer-events: none;
-        z-index: 0;
+        display: none !important;
     }
 
     /* toàn bộ nội dung nổi lên trên nền */
@@ -7789,36 +7786,67 @@ img {
 
     .search-bar {
         position: relative;
+        z-index: 2;
+
+        /* chiều cao block */
+        min-height: 260px;
+
+        /* padding để đẩy nội dung xuống */
         padding-top: 20px;
-        padding-bottom: 150px;
-        background: transparent;
-        /* bỏ nền cũ nếu có */
+        padding-bottom: 0;
+
+        /* banner nằm phía sau */
+        background: url('/img/banner.png') no-repeat top center;
+        background-size: cover;
+
+        overflow: hidden;
     }
 
-    /* tạo background phía sau (cao 125px) */
-    .search-bar::before {
-        content: "";
+    .banner-bg {
         position: absolute;
         top: 0;
         left: 0;
         width: 100%;
-        height: 124%;
-        padding-bottom: 10px;
-        /* background: linear-gradient(135deg, #ff4f9a, #ff7eb3); */
-        /* hoặc dùng ảnh */
-        background: url('/img/banner.png') center top / contain no-repeat;
-        z-index: 0;
+        height: auto;
+        z-index: 1;
     }
 
-    /* container nổi lên trên */
+    .banner-bg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 318px;
+        z-index: 1;
+    }
+
     .search-bar .container {
         position: relative;
         z-index: 2;
     }
 
+    .search-bar .container {
+        position: relative;
+        z-index: 2;
+    }
+
+    /* tạo background phía sau (cao 125px) */
+    .search-bar::before {
+        display: none !important;
+    }
+
+    /* container nổi lên trên */
+    .search-bar .container {
+        position: relative;
+        z-index: 3;
+        width: 100%;
+        max-width: 100%;
+        padding: 0 8px !important;
+    }
+
     /* đẩy input lên trên cùng */
-    .search-bar-control {
-        align-items: flex-start !important;
+    .search-form-control {
+        width: 100% !important;
     }
 
     /* form search */
@@ -7828,23 +7856,20 @@ img {
 
     /* input đẹp hơn */
     .search-bar .input-search {
-        height: 44px !important;
+        width: 100% !important;
+        height: 46px !important;
         border-radius: 30px !important;
         border: 2px solid #ff5ca8 !important;
         background: #fff !important;
         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        box-sizing: border-box;
     }
 
+
     .coupon-section {
-        display: block;
-        margin: 46px 8px -18px;
-        padding: 10px 0 8px;
-        background: #fff;
-        border-radius: 14px;
+        margin: 0 8px -18px;
         position: relative;
-        z-index: 2;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
-        overflow: hidden;
+        z-index: 5;
     }
 
     .coupon-header {
@@ -8415,6 +8440,32 @@ img {
 
     .support {
         padding-left: 45px
+    }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+
+    .search-bar {
+        min-height: 300px;
+        background-size: auto 300px;
+        background-position: top center;
+    }
+
+    .search-bar .container {
+        padding: 0 12px !important;
+    }
+
+    .coupon-section {
+        margin-top: 0 !important;
+    }
+}
+
+/* ================= MOBILE ================= */
+@media (max-width: 767px) {
+
+    .search-bar {
+        min-height: 318px;
+        background-size: auto 220px;
     }
 }
 

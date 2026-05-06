@@ -156,7 +156,7 @@ onBeforeUnmount(() => {
 
 <template>
 
- <div class="blue-skin w-full w1905 fixed-nav mobile-page" id="index">
+ <div class="lue-skin fixed-nav mobile-page" id="index">
     <Popup v-model="showMarketingPopup" />
   <div class="mobile-page">
     <div class="header-saads" style="background:#a80201">
@@ -172,6 +172,7 @@ onBeforeUnmount(() => {
       </div>
     </div>
     <div class="search-bar">
+    <img src="/img/banner.png" class="banner-bg" />
       <div class="container">
         <div class="search-bar-control d-flex align-center justify-content-space">
           <div class="d-flex align-center">
