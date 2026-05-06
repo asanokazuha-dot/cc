@@ -7585,7 +7585,9 @@ img {
     box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
     animation: popupFadeIn 0.25s ease;
 }
-
+.banner-bg {
+  display: none;
+}
 .popup-content img {
     display: block;
     max-width: 200px;
@@ -7812,6 +7814,7 @@ img {
     }
 
     .banner-bg {
+        display: block;
         position: absolute;
         top: 0;
         left: 0;
